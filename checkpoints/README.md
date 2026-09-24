@@ -16,7 +16,8 @@ Cube, Reacher, TwoRoom, PushT, and Scene at training seeds 3072, 4096, and
 action-recovery weight. Each run directory includes the resolved `config.yaml`
 needed by the diagnostic tools.
 
-The code repository's `checkpoints/MANIFEST.csv` records the exact relative
+The companion code is at https://github.com/ad-wm/ad-wm-code. Its
+`checkpoints/MANIFEST.csv` records the exact relative
 paths, byte sizes, and SHA-256 hashes. After download, from the code root run:
 
 ```bash
