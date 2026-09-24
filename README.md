@@ -33,7 +33,7 @@ source .venv/bin/activate
 uv pip install -r requirements.txt
 
 export MUJOCO_GL=egl
-export STABLEWM_HOME="$PWD/checkpoints"
+export STABLEWM_HOME="$HOME/.stable-wm"
 ```
 
 `STABLEWM_HOME` contains both datasets and checkpoint run directories. Use `CUDA_VISIBLE_DEVICES` to select a GPU.
@@ -62,7 +62,7 @@ python scripts/generate_ogbench_manipspace.py \
 
 ## Pretrained checkpoints
 
-Download the [main-model checkpoints](https://huggingface.co/ad-wm/ad-wm) into the same root as the datasets. The manifest verifies the downloaded files:
+Download the [main-model checkpoints](https://huggingface.co/ad-wm/ad-wm) into the same root as the datasets. The [checkpoint notes](checkpoints/README.md) describe the manifest and included configs. Verify the downloaded files with:
 
 ```bash
 hf download ad-wm/ad-wm --local-dir "$STABLEWM_HOME"

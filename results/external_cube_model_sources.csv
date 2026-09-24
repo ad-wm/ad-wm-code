@@ -1,0 +1,6 @@
+method,training_seed,code_url,code_revision,checkpoint_url,checkpoint_sha256
+fast_lewm_cem,released,https://github.com/Yuntian-Gao/Fast-LeWorldModel,492752d96b2a11ec802c55322c46bdc87885da09,https://huggingface.co/naiverer/fast-leworldmodel,e7b43b8dea338b7b3c65d81fd59c7aeba7fa8ca6e2124cca8f18885a982a2fa1
+subjepa_cem,released,https://github.com/intcomp/Sub-JEPA,ef945ed434ce529bc7c5f1995f2e1cf173954843,https://huggingface.co/intcomp/sub-jepa,05a269ab6da3be48748db77f878442852d2af18dc7693ebb2fd3220d4760263c
+intact_e5,0,https://github.com/zju3dv/INTACT-JEPA,235b6a3a92db4d0f1b3a40597ab1f407db4fd15b,https://huggingface.co/INTACT-JEPA/INTACT/tree/paper-e5-goal-v1,96a4d525e996c2b78fa384873496396024364850ad4af0003274b8c1426ea270
+intact_e5,42,https://github.com/zju3dv/INTACT-JEPA,235b6a3a92db4d0f1b3a40597ab1f407db4fd15b,https://huggingface.co/INTACT-JEPA/INTACT/tree/paper-e5-goal-v1,d155d9d0c71cc48614d822b14456f341748a25524c7a899b959a54312755e94a
+intact_e5,3072,https://github.com/zju3dv/INTACT-JEPA,235b6a3a92db4d0f1b3a40597ab1f407db4fd15b,https://huggingface.co/INTACT-JEPA/INTACT/tree/paper-e5-goal-v1,d2abfd5d907491cf770cc9d3f5bd003f53d0d16f01ac4732111b9dc459895f07
