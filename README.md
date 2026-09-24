@@ -15,7 +15,7 @@ Real-robot deployment, Franka evaluation, and V-JEPA 2/DROID post-training code 
 - `scripts/generate_ogbench_manipspace.py`, `ogbench_scene.py`: Scene collection and state/goal integration. `scripts/convert_ogbench_manipspace_to_swm_hdf5.py` converts an existing OGBench NPZ replay if needed.
 - `analyze_*.py`, `analysis/`, `scripts/run_cube_shared_bank.py`: factual-rollout, CEM landscape, 300-candidate shared-bank, bootstrap, and configuration-shift diagnostics.
 - `results/external_cube_*.csv`, `analysis/external_cube_results.py`, `external/README.md`: external Cube per-episode records, exact-start/perturbation checks, paper-table statistics, and upstream provenance.
-- `checkpoints/MANIFEST.csv`: names, sizes, and SHA-256 hashes of the 15 staged main-model object checkpoints. Each run also includes a resolved `config.yaml` for the diagnostic tools. Binary checkpoints are excluded from Git and should be distributed separately through a model host or archive.
+- `checkpoints/MANIFEST.csv`: names, sizes, and SHA-256 hashes of the 15 staged main-model object checkpoints. Each run also includes a resolved `config.yaml` for the diagnostic tools. Binary checkpoints are excluded from Git and are distributed in the [AD-WM model repository](https://huggingface.co/ad-wm/ad-wm).
 
 ## Environment
 
@@ -136,4 +136,4 @@ These diagnostic tools are offline analyses. They do not alter training or the d
 
 ## Release artifacts and limits
 
-The staged checkpoint manifest covers the five environment-specific main models at seeds 3072, 4096, and 6144. Stage `checkpoints/` as a separate model archive when publishing; the `.ckpt` files are intentionally ignored by Git because the 15 objects total about 1.16 GB. After downloading them, run `python scripts/verify_checkpoint_manifest.py --root <downloaded-model-root>` to check all hashes and resolved configs. Train or obtain the ablation checkpoints before rerunning their tables and the shared-bank analysis. The release has no real-robot code or laboratory data, and no external-method checkpoints. Hardware/library variation and regenerated Scene trajectories may change exact percentages.
+The staged checkpoint manifest covers the five environment-specific main models at seeds 3072, 4096, and 6144. The 15 object checkpoints (about 1.16 GB) are hosted at [ad-wm/ad-wm](https://huggingface.co/ad-wm/ad-wm), not in Git. Download them with `hf download ad-wm/ad-wm --local-dir "$STABLEWM_HOME"`, then run `python scripts/verify_checkpoint_manifest.py --root "$STABLEWM_HOME"` to check all hashes and resolved configs. Train or obtain the ablation checkpoints before rerunning their tables and the shared-bank analysis. The release has no real-robot code or laboratory data, and no external-method checkpoints. Hardware/library variation and regenerated Scene trajectories may change exact percentages.
