@@ -1,0 +1,29 @@
+defaults:
+  - scene_stable
+  - _self_
+
+eval:
+  num_eval: 200
+  start_filter:
+    mode: scene_goal_mismatch
+    block_pos_tolerance: 0.04
+    drawer_pos_tolerance: 0.04
+    window_pos_tolerance: 0.04
+    max_changed_components: 1
+    min_block_goal_distance: 0.08
+    min_drawer_goal_delta: 0.08
+    min_window_goal_delta: 0.08
+    min_effector_changed_target_distance: 0.08
+  start_selection:
+    mode: scene_balanced_components
+    components:
+      - button
+      - cube
+      - drawer
+      - window
+
+output:
+  filename: ogb_scene_hardstart_balanced_results.txt
+  save_video: False
+  save_structured: True
+  structured_filename: null

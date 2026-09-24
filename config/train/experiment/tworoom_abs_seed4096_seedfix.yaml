@@ -1,0 +1,16 @@
+# @package _global_
+
+defaults:
+- override /data: tworoom
+seed: 4096
+subdir: tworoom_abs_seed4096_seedfix
+output_model_name: tworoom_abs_seed4096_seedfix
+repro:
+  seed_everything: true
+wm:
+  residual_target: false
+loss:
+  inverse:
+    enabled: false
+  mi:
+    enabled: false

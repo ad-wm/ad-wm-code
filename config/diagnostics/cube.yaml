@@ -1,0 +1,51 @@
+defaults:
+  - _self_
+  - optional experiment: null
+
+seed: 3072
+cache_dir: null
+img_size: 224
+train_split: 0.9
+
+checkpoints:
+  run_dir: ???
+  pattern: "*_epoch_*_object.ckpt"
+  epochs: [10]
+  max_count: null
+
+analysis:
+  batch_size: 64
+  num_workers: 4
+  device: cuda
+  rollout_horizon: 25
+  local_rollout_horizon: 5
+  output_subdir: residual_diagnostics
+  overwrite: False
+  limit_batches: null
+  progress_every: 100
+  eps: 1.0e-8
+  model_type: null
+  static_preservation:
+    enabled: False
+    threshold_mode: quantile
+    quantile: 0.05
+    threshold: null
+
+planning_eval:
+  enabled: False
+  config_name: cube
+  save_structured: True
+
+data:
+  dataset:
+    name: ogbench/cube_single_expert
+    num_steps: ${eval:'${wm.history_size} + ${analysis.rollout_horizon}'}
+    frameskip: 5
+    keys_to_load:
+      - pixels
+      - action
+    keys_to_cache:
+      - action
+
+wm:
+  history_size: 3

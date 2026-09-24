@@ -1,0 +1,12 @@
+defaults:
+  - scene
+  - _self_
+
+eval:
+  num_eval: 200
+
+output:
+  filename: ogb_scene_stable_results.txt
+  save_video: False
+  save_structured: True
+  structured_filename: null

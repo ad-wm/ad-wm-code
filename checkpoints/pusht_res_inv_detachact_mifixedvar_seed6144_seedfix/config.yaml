@@ -1,0 +1,76 @@
+subdir: pusht_res_inv_detachact_mifixedvar_seed6144_seedfix
+output_model_name: pusht_res_inv_detachact_mifixedvar_seed6144_seedfix
+seed: 6144
+repro:
+  seed_everything: true
+train_split: 0.9
+num_workers: 6
+img_size: 224
+patch_size: 14
+encoder_scale: tiny
+trainer:
+  max_epochs: 10
+  devices: 1
+  accelerator: gpu
+  precision: bf16
+  gradient_clip_val: 1.0
+loader:
+  batch_size: 128
+  num_workers: 6
+  persistent_workers: true
+  prefetch_factor: 3
+  pin_memory: true
+optimizer:
+  type: AdamW
+  lr: 5.0e-05
+  weight_decay: 0.001
+wm:
+  type: lewm
+  history_size: 3
+  num_preds: 1
+  embed_dim: 192
+  residual_target: true
+  action_dim: 2
+  proprio_dim: 4
+  state_dim: 7
+predictor:
+  depth: 6
+  heads: 16
+  mlp_dim: 2048
+  dim_head: 64
+  dropout: 0.1
+  emb_dropout: 0.0
+loss:
+  inverse:
+    enabled: true
+    weight: 0.1
+    grad_mode: detach_action_encoder
+    input_mode: predicted_transition_concat
+  mi:
+    enabled: true
+    weight: 0.01
+    grad_mode: detach_action_encoder
+    kl_weight: 0.01
+    target_normalize: true
+    target_eps: 1.0e-06
+    learn_posterior_logvar: false
+    unit_variance_prior: true
+  sigreg:
+    weight: 0.09
+    kwargs:
+      knots: 17
+      num_proj: 1024
+data:
+  dataset:
+    num_steps: 4
+    frameskip: 5
+    name: pusht/pusht_expert_train
+    keys_to_load:
+    - pixels
+    - action
+    - proprio
+    - state
+    keys_to_cache:
+    - action
+    - proprio
+    - state

@@ -1,0 +1,95 @@
+defaults:
+  - _self_
+  - optional experiment: null
+
+seed: 3072
+cache_dir: null
+img_size: 224
+train_split: 0.9
+eval_config_name: cube
+
+checkpoints:
+  run_dir: ???
+  pattern: "*_epoch_*_object.ckpt"
+  epochs: [10]
+  max_count: null
+
+analysis:
+  device: cuda
+  batch_size: 64
+  num_workers: 4
+  eval_states: 2048
+  action_bank_size: 4096
+  output_subdir: counterfactual_metrics
+  overwrite: False
+  progress_every: 20
+  eps: 1.0e-8
+  save_plots: True
+  one_step:
+    enabled: True
+    num_negatives_per_bucket: 5
+    include_identity_candidate: True
+    exclusion_eps: 1.0e-6
+  rollout:
+    enabled: True
+    horizon: 5
+    near_count: 4
+    mid_count: 4
+    far_count: 4
+    near_scale: 0.03
+    mid_scale: 0.10
+    far_scale: 0.30
+    dataset_random_count: 0
+    clip_to_bank_range: True
+    num_hard_negatives: 4
+    num_random_negatives: 4
+    exclusion_eps: 1.0e-6
+  planner:
+    enabled: True
+    num_eval: 128
+    num_candidates: 64
+    topk: 10
+    env_batch_size: 64
+    noise_scale: 1.0
+    solver_overrides:
+      batch_size: null
+      num_samples: null
+      n_steps: null
+      topk: null
+      var_scale: null
+  shared_planner:
+    enabled: False
+    num_eval: 32 #128
+    topk: 10
+    env_batch_size: 64
+    env_cost_mode: visual_latent
+    good_quantile: 0.20
+    pairwise_gap_quantile: 0.50
+    pairwise_min_env_gap: 0.0
+    include_zero: True
+    include_negated: True
+    include_reversed: True
+    near_count: 8
+    mid_count: 8
+    far_count: 8 # 16
+    random_count: 0
+    random_bank_size: 512
+    near_scale: 0.03
+    mid_scale: 0.10
+    far_scale: 0.30
+    cache_path: null
+    overwrite_cache: False
+
+data:
+  dataset:
+    name: ogbench/cube_single_expert
+    num_steps: ${eval:'${wm.history_size} + ${analysis.rollout.horizon}'}
+    frameskip: 5
+    keys_to_load:
+      - pixels
+      - action
+    keys_to_cache:
+      - action
+
+wm:
+  history_size: 3

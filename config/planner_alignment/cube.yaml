@@ -1,0 +1,54 @@
+defaults:
+  - _self_
+  - optional experiment: null
+
+seed: 3072
+cache_dir: null
+eval_config_name: cube
+
+checkpoints:
+  run_dir: ???
+  pattern: "*_epoch_*_object.ckpt"
+  epochs: [10]
+  max_count: null
+
+analysis:
+  device: cuda
+  output_subdir: planner_alignment
+  overwrite: False
+  num_eval: 20
+  progress_every: 5
+  eps: 1.0e-8
+  random_alignment:
+    enabled: True
+    one_step_candidates: 32
+    five_step_candidates: 16
+    include_five_step: True
+  landscape:
+    enabled: True
+    compare_run_dir: null
+    center_mode: cem_final
+    reference_npz: null
+    reference_case_idx: 0
+    reference_mode: full
+    reference_best_elite_idx: 0
+    axis_mode: elite_pca
+    scan_step: -1
+    scan_num_steps: 1
+    scan_dims: [0, 1]
+    last_action_dims: [0, 1]
+    one_step: True
+    full_horizon: True
+    env_batch_size: 64
+    grid_points: 31
+    radius_scale: 2.0
+    fixed_radius: null
+    eval_env_costs: True
+    save_plots: True
+    save_npz: True
+    store_full_samples: False
+    representative:
+      current_only: 2
+      compare_only: 1
+      both_success: 1
+      both_fail: 1

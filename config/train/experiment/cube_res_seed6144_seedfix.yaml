@@ -1,0 +1,16 @@
+# @package _global_
+
+defaults:
+- override /data: ogb
+seed: 6144
+subdir: cube_res_seed6144_seedfix
+output_model_name: cube_res_seed6144_seedfix
+repro:
+  seed_everything: true
+wm:
+  residual_target: true
+loss:
+  inverse:
+    enabled: false
+  mi:
+    enabled: false

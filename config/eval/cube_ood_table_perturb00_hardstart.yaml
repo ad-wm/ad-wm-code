@@ -1,0 +1,15 @@
+defaults:
+  - cube_ood_table_perturb00
+  - _self_
+
+eval:
+  start_filter:
+    mode: table_non_contact
+    min_goal_distance: 0.05
+    min_effector_block_distance: 0.02
+
+output:
+  filename: ogb_cube_ood_table_perturb00_hardstart_results.txt
+  save_structured: True
+  save_video: True
+  video_subdir: ood_table_perturb00_hardstart_videos

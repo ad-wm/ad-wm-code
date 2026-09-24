@@ -1,0 +1,22 @@
+# @package _global_
+
+defaults:
+- override /data: ogb
+seed: 6144
+subdir: cube_res_inv_detachact_mifixedvar_w05_seed6144_seedfix
+output_model_name: cube_res_inv_detachact_mifixedvar_w05_seed6144_seedfix
+repro:
+  seed_everything: true
+wm:
+  residual_target: true
+loss:
+  inverse:
+    enabled: true
+    weight: 0.1
+    grad_mode: detach_action_encoder
+  mi:
+    enabled: true
+    weight: 0.05
+    kl_weight: 0.01
+    learn_posterior_logvar: false
+    unit_variance_prior: true

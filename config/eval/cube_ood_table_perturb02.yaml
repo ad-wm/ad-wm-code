@@ -1,0 +1,26 @@
+defaults:
+  - cube
+  - _self_
+
+eval:
+  goal_offset_steps: 25
+  eval_budget: 50
+  start_selection:
+    mode: random
+  start_filter:
+    mode: table_non_contact
+  ood:
+    initial_perturb:
+      enabled: True
+      xy_radius: 0.02
+      qpos_key: qpos
+      position_key: privileged_block_0_pos
+      qpos_start: 14
+      x_bounds: [0.30, 0.55]
+      y_bounds: [-0.30, 0.30]
+
+output:
+  filename: ogb_cube_ood_table_perturb02_results.txt
+  save_structured: True
+  save_video: True
+  video_subdir: ood_table_perturb02_videos

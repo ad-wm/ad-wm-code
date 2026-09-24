@@ -1,0 +1,12 @@
+defaults:
+  - cube
+  - _self_
+
+# Standard Cube evaluation: random valid dataset starts, no hard-start filter,
+# and no initial-state perturbation.
+output:
+  filename: cube_original_benchmark_results.txt
+  save_structured: true
+  structured_filename: null
+  save_video: false
+  video_subdir: cube_original_benchmark_videos
